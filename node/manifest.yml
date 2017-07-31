@@ -1,6 +1,6 @@
 ---
 applications:
-- host: conversation-inspector-for-ibm-watson #-${random-word}
+- host: conversation-inspector-for-ibm-watson-${random-word}
   name: conversation-inspector-for-ibm-watson
   memory: 256M
   path: ../dist/
