@@ -2,7 +2,7 @@
 stages:
 - name: Build Stage
   inputs:
-  - url: https://github.ibm.com/niklas-heidloff/test-client-for-watson-conversation.git
+  - url: https://github.com/nheidloff/conversation-inspector-for-ibm-watson.git
     type: git
     branch: master
     dir_name: null
