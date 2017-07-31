@@ -9,24 +9,29 @@ stages:
   jobs:
   - name: Build
     type: builder
-- name: Deploy Stage
+- name: npm install
   inputs:
   - type: job
     stage: Build Stage
     job: Build
+    dir_name: null
   triggers:
   - type: stage
   jobs:
-  - name: Deploy to dev
-    type: deployer
-    target:
-      url: ${CF_TARGET_URL}
-      organization: ${CF_ORGANIZATION}
-      space: ${CF_SPACE}
-      application: ${CF_APP}
+  - name: Build
+    type: builder
+    artifact_dir: ''
+    build_type: npm
     script: |-
       #!/bin/bash
-      cf push "${CF_APP}"
-
-      # View logs
-      #cf logs "${CF_APP}" --recent
+      # The default Node.js version is 0.10.40
+      # To use Node.js 0.10.48, uncomment the following line:
+      #export PATH=/opt/IBM/node-v0.10.48/bin:$PATH
+      # To use Node.js 0.12.7, uncomment the following line:
+      #export PATH=/opt/IBM/node-v0.12/bin:$PATH
+      # To use Node.js 4.4.5, uncomment the following line:
+      #export PATH=/opt/IBM/node-v4.4.5/bin:$PATH
+      # To use Node.js 6.7.0, uncomment the following line:
+      export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
+      npm install
+      npm run build:prod
