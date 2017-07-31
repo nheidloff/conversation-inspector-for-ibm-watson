@@ -1,0 +1,92 @@
+<div id="wrapper" style="min-width: 540px;">
+    <div id="top"></div>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button *ngIf="this.isLoggedIn()" type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            <a class="navbar-brand" routerLink="/dashboard">
+                <span style="color: white">Conversation Inspector</span> <span style="color: #00b4a0">for IBM Watson</span>
+            </a>
+        </div>
+        
+        <div *ngIf="this.isLoggedIn() && (dashboardCurrentPage() == false)" class="sidebar" [ngClass]="{'showBrowserMessage': this.nonChromeBrowser()}" role="navigation">
+            <div class="sidebar-nav collapse navbar-collapse">
+                <ul class="nav" id="side-menu">
+
+                    
+                    <li>
+                        <a routerLink="/home/" routerLinkActive="active">
+                            <div style="margin-left:10px"><i class="fa fa-home" aria-hidden="true"></i> Home</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/configuration/" routerLinkActive="active">
+                            <div style="margin-left:10px"><i class="fa fa-cog" aria-hidden="true"></i> Configuration</div>
+                        </a>
+                    </li>
+                   
+                    <li>
+                        <a routerLink="/inspector/" routerLinkActive="active">
+                            <div style="margin-left:10px"><i class="fa fa-play-circle-o" aria-hidden="true"></i> Conversation Inspector</div>
+                        </a>
+                    </li>
+                </ul>
+                <br>
+                <br>
+                <ul class="nav">
+                     <li>
+                        <a target="_blank" href="https://github.ibm.com/niklas-heidloff/test-client-for-watson-conversation/issues">
+                            <div style="margin-left:10px"><i class="fa fa-github" aria-hidden="true"></i> Issues / Requests </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a target="_blank" href="https://github.ibm.com/niklas-heidloff/test-client-for-watson-conversation">
+                            <div style="margin-left:10px"><i class="fa fa-github" aria-hidden="true"></i> Source Code </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a style="margin-left: 10px;" href="https://bluemix.net/deploy?repository=https://github.com/nheidloff/conversation-inspector-for-ibm-watson"><img src="https://bluemix.net/deploy/button.png" alt="Deploy to Bluemix"></a>
+                    </li>
+                </ul>
+                <br>
+                <br>
+                <ul class="nav">
+                     <li>
+                        <a target="_blank" href="https://developer.ibm.com/code/advocates/category/berlin-germany/">
+                            <div style="margin-left:10px">Brought to you with <i class="fa fa-heart" aria-hidden="true"></i> by the Developer Advocacy Team Berlin </div>
+                        </a>
+                    </li>
+                </ul>
+                <div id="browser-message" class="">
+                     <br>
+                <br>
+            <div *ngIf="this.nonChromeBrowser()" class="alert alert-warning alert-dismissible" style="top: 400px;position: absolute;margin-left: 5px;margin-right: 5px;width: 240px;border-right: 2px solid #efc100;" role="alert">
+                <i class="fa fa-exclamation-triangle warning-icon"></i> Only Chrome has been tested
+            </div>
+        </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        
+    </nav>
+    <div id="page-wrapper" [ngClass]="{leftNav: this.isLoggedIn() && (dashboardCurrentPage() == false)}">
+        <div class="container-fluid" style="min-width: 400px;">
+            <div class="row" id="app-loader-spinner" [ngStyle]="{ 'display': this.showApplicationLoader ? 'block' : 'none' }">
+
+                <div style="margin-top: 10px;display: flex">
+                    <i class="loading-icon fa fa-spinner fa-pulse fa-3x fa-fw" style="width: inherit;margin-right:10px"></i>
+                    <div style="font-size: larger;margin-top: 10px;">Loading Skills Development Tool for Watson Personal Assistant</div>
+                </div>
+            </div>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+
+<a id="exportElementHidden" style="display:none">
+

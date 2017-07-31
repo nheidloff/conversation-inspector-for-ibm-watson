@@ -1,0 +1,13 @@
+.DS_Store
+/node_modules
+npm-debug.log*
+/src/typings/tsd/
+/typings/
+/tsd_typings/
+/dist
+/node/node_modules
+/.vscode
+.vscode
+./.vscode
+/src/assets/config.json
+/src/assets/config-nh.json

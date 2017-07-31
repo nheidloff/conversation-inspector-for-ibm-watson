@@ -1,0 +1,247 @@
+.list-group {
+    padding-left: 0;
+    margin-bottom: 0px; 
+}
+
+a {
+    color: #3d70b2;
+}
+
+.alert-warning {
+    color: black;
+    background-color: #f5f7fa;    		
+		border-color: #dfe6eb;
+		border-left: 2px solid #efc100;
+		border-right: 2px solid #efc100;
+		border-bottom: 2px solid #efc100;
+		border-top: 2px solid #efc100;
+}
+
+a.list-group-item:hover {
+	background-color: #f5f7fa;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #3d70b2;
+		border: 2px solid #3d70b2;
+}
+
+.btn-default.disabled.focus, .btn-default.disabled:focus, .btn-default.disabled:hover, .btn-default[disabled].focus, .btn-default[disabled]:focus, .btn-default[disabled]:hover, fieldset[disabled] .btn-default.focus, fieldset[disabled] .btn-default:focus, fieldset[disabled] .btn-default:hover {
+    background-color: #5aaafa;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #5aaafa;
+		border: 2px solid #5aaafa;
+}
+.btn-primary:active:focus {
+  color: #fff;
+    background-color: #5aaafa;
+		border: 2px solid #5aaafa;
+}
+
+.btn-default[disabled]:hover {
+	    cursor: not-allowed;
+			color: #3d70b2;
+    border: 2px solid #3d70b2;
+}
+.btn-default {
+    color: #3d70b2;
+    border: 2px solid #3d70b2;
+}
+.btn-default:hover {
+     color: #fff;
+    background-color: #3d70b2;
+		border: 2px solid #3d70b2;
+}
+.btn-default:focus {
+  color: #fff;
+    background-color: #3d70b2;
+		border: 2px solid #3d70b2;
+}
+.btn-default:active {
+  color: #fff;
+    background-color: #3d70b2;
+		border: 2px solid #3d70b2;
+}
+.btn-default:active:focus {
+  color: #fff;
+    background-color: #3d70b2;
+		border: 2px solid #3d70b2;
+}
+
+
+
+#wrapper{
+	width: 100%;
+	background-color: #f5f7fa;
+
+	nav {
+		.sidebar {
+			background-color: #f5f7fa;
+		}
+	
+		&.navbar-default{
+			background-color: #152935;
+			border-bottom: none;
+			.navbar-toggle:hover {
+				background-color:#00b4a0;
+					.icon-bar {
+				background-color:white;
+			}			
+			}
+			.navbar-toggle:focus {
+				background-color:#152935;
+					.icon-bar {
+				background-color:#00b4a0;
+			}			
+			}
+			.navbar-toggle {
+    		border: none;
+				.icon-bar {
+					background-color: #00b4a0;					
+				}
+			
+			
+			}
+			.navbar-nav {				
+				li{
+					a {
+						color: white;
+						cursor: pointer;
+
+						&:hover{
+							color: #5aaafa;
+						}
+
+						.username {
+							img {
+								width: 20px;
+							}
+
+							.name{
+								vertical-align: middle;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.sidebar{
+
+			&.showBrowserMessage{
+					@media (min-width: 768px) {
+						top: 100px;
+				}
+			}
+
+			@media (min-width: 768px) {
+			    z-index: 1;
+			    position: absolute;
+			    width: 250px;
+			    top: 60px;
+			}
+
+			.sidebar-nav.navbar-collapse{
+			  padding-left: 0;
+  				padding-right: 0;
+			}
+
+			.sidebar-search{
+				padding: 15px;
+			}
+
+			ul li{
+				
+				a.active {
+				  background-color: #eeeeee;
+				}
+			}
+
+			.arrow {
+			  float: right;
+			}
+
+			.fa.arrow:before {
+			  content: "\f104";
+			}
+
+			.active > a > .fa.arrow:before {
+			  content: "\f107";
+			}
+
+			.nav-second-level{
+				li{
+					border-bottom: none !important;
+					a{
+						padding-left: 37px;
+					}
+				}
+			} 
+
+			.nav-third-level{
+				li{
+					border-bottom: none !important;
+					a{
+						padding-left: 52px;
+					}
+				}
+			}
+		} // .sidebar
+	}
+
+	#page-wrapper {
+	  padding: 0 15px;
+	  min-height: 568px;
+	  background-color: white;
+
+	  @media (min-width: 768px) {
+  	  	position: inherit;
+
+		&.leftNav {
+			margin: 0 0 0 250px;
+			padding: 0 30px;
+			border-left: 1px solid #e7e7e7;
+		}
+	  }
+	}
+
+	#browser-message {
+		background-color: white;
+
+		div.alert {
+			margin-bottom: 0;
+			width: 251px;
+			border-right: 1px solid #e7e7e7;
+			font-size: 0.875em;
+
+			i.warning-icon {
+				color:#efc100;
+			}
+		}
+	}
+}
+
+@media (min-width: 768px){
+	.navbar-right {
+    	margin-right: 0px;
+	}
+
+	#wrapper {
+		#browser-message:not(.onDashboardPage) {
+			position: absolute;
+			top: 50px;
+
+			div.alert {
+				margin-top: 0;
+			}
+		}
+
+		#browser-message.onDashboardPage {
+			margin-top:50px;
+		}
+	}
+}

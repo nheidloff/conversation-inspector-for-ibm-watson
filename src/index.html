@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+    <%= webpackConfig.metadata.title %>
+  </title>
+  <meta name="description" content="<%= webpackConfig.metadata.title %>">
+  <link rel="stylesheet" href="/assets/less/main.css">  
+  <% if (webpackConfig.htmlElements.headTags) { %>
+    <!-- Configured Head Tags  -->
+    <%= webpackConfig.htmlElements.headTags %>
+      <% } %>
+        <!-- base url -->
+        <base href="<%= webpackConfig.metadata.baseUrl %>">
+</head>
+
+<body>
+  <app>
+    <div style="margin-top:10px;margin-left:10px;">     
+      <div style="display:flex">
+		    <i class="loading-icon fa fa-spinner fa-pulse fa-3x fa-fw" style="width: inherit;margin-top: 0; margin-right:10px"></i>
+		    <div style="font-size: larger;margin-top: 10px;">Loading Conversation Inspector for IBM Watson</div>		
+	    </div>
+    </div>
+</app>
+
+<% if (webpackConfig.metadata.isDevServer && webpackConfig.metadata.HMR !== true) { %>
+  <!-- Webpack Dev Server reload -->
+  <script src="/webpack-dev-server.js"></script>
+  <% } %>
+    </body>
+
+    </html>

@@ -1,0 +1,9 @@
+---
+applications:
+- host: conversation-inspector-for-ibm-watson #-${random-word}
+  name: conversation-inspector-for-ibm-watson
+  memory: 256M
+  path: ../dist/
+  instances: 1
+  buildpack: https://github.com/cloudfoundry/nodejs-buildpack
+  command: node server.js

@@ -1,0 +1,198 @@
+<div class="row">
+	<div class="col-lg-12">
+		<div style="display: table">
+			<div style="display: table-row">
+				<div style="display: table-cell">
+					<h2 class="page-header" style="border-bottom:none; margin-bottom:0px">
+						<i class="fa fa-play-circle-o" aria-hidden="true"></i>&nbsp;
+					</h2>
+				</div>
+				<div style="display: table-cell">
+					<h2 class="page-header" style="border-bottom:none; margin-bottom:0px">Conversation Inspector</h2>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+<hr style="margin-top: 0px;">
+<div class="row">
+	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div style="display: table;width:100%;">
+					<div style="display: table-row;width:100%;height: 55px;">
+						<div style="display: table-cell;width:50%;padding-right: 20px;">
+							<span *ngIf="getWatsonConfigurationStatus() == 'valid'" class="alert alert-warning form-control" style="height: 100%;border-left: 2px solid #8cd211;border-bottom: 2px solid #8cd211;border-top: 2px solid #8cd211;border-right: 2px solid #8cd211;margin-bottom: 1px;">Configuration: Valid</span>							
+							<span *ngIf="getWatsonConfigurationStatus() == 'credentialssyntaxvalid'" class="alert alert-warning form-control" style="height: 100%;margin-bottom: 1px;">Configuration: Workspace missing</span>
+							<span *ngIf="getWatsonConfigurationStatus() == 'credentialsnocorrect'" class="alert alert-warning form-control" style="height: 100%;margin-bottom: 1px;">Configuration: Credentials not correct</span>
+							<span *ngIf="getWatsonConfigurationStatus() === 'syntaxcorrect'" class="alert alert-warning form-control" style="height: 100%;border-left: 2px solid #8cd211;border-bottom: 2px solid #8cd211;border-top: 2px solid #8cd211;border-right: 2px solid #8cd211;margin-bottom: 1px;">Configuration: Syntactically correct</span>
+							<span *ngIf="getWatsonConfigurationStatus() == 'syntaxnotcorrect'" class="alert alert-warning form-control" style="height: 100%;margin-bottom: 1px;">Configuration: Syntactically not correct</span>
+							<span *ngIf="getWatsonConfigurationStatus() == 'invalid'" class="alert alert-warning form-control" style="height: 100%;margin-bottom: 1px;">Configuration: Invalid</span>
+						</div>
+						<div style="display: table-cell;width:50%;">
+							<span *ngIf="(training$ | async) == 'Training'" class="alert alert-warning form-control" style="height: 100%;"><i class="loading-icon fa fa-spinner fa-pulse fa-lg" style="width: initial;margin-top: 0; margin-right:5px"></i>Workspace Status: Training</span>
+							<span *ngIf="(training$ | async) == 'checking'" class="alert alert-warning form-control" style="height: 100%;border-left: 2px solid #8cd211;border-bottom: 2px solid #8cd211;border-top: 2px solid #8cd211;border-right: 2px solid #8cd211;"><i class="loading-icon fa fa-spinner fa-pulse fa-lg" style="width: initial;margin-top: 0; margin-right:5px"></i>Workspace Status: Checking</span>
+							<span *ngIf="(training$ | async) == 'Non Existent'" class="alert alert-warning form-control" style="height: 100%;">Workspace Status: Doesn't exit <button style="margin-left: 8px;margin-bottom: 1px;padding-top: 8px;padding-bottom: 6px;" [disabled]='isWatsonConfigurationValid() == false' (click)="readWorkspaceStatus()" class="btn btn-default"><i class="fa fa-lg fa-refresh" ></i></button></span>
+							<span *ngIf="(training$ | async) == 'Failed'" class="alert alert-warning form-control" style="height: 100%;">Workspace Status: Training failed <button style="margin-left: 8px;margin-bottom: 1px;padding-top: 8px;padding-bottom: 6px;" [disabled]='isWatsonConfigurationValid() == false' (click)="readWorkspaceStatus()" class="btn btn-default"><i class="fa fa-lg fa-refresh" ></i></button></span>
+							<span *ngIf="(training$ | async) == 'Available'" class="alert alert-warning form-control" style="height: 100%;border-left: 2px solid #8cd211;border-bottom: 2px solid #8cd211;border-top: 2px solid #8cd211;border-right: 2px solid #8cd211;;margin-bottom: 1px;margin-bottom: 1px;padding-top: 8px;padding-bottom: 6px;">Workspace Status: Trained <button style="margin-left: 8px;" [disabled]='isWatsonConfigurationValid() == false' (click)="readWorkspaceStatus()" class="btn btn-default"><i class="fa fa-lg fa-refresh" ></i></button></span>
+							<div *ngIf="(training$ | async) == 'unknown'">
+								<span class="alert alert-warning form-control" style="height: 100%;border-left: 2px solid #8cd211;border-bottom: 2px solid #8cd211;border-top: 2px solid #8cd211;border-right: 2px solid #8cd211;margin-bottom: 1px;padding-top: 8px;padding-bottom: 6px;">Workspace Status: Unknown <button style="margin-left: 8px;" [disabled]='isWatsonConfigurationValid() == false' (click)="readWorkspaceStatus()" class="btn btn-default"><i class="fa fa-lg fa-refresh" ></i></button></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<br><br>
+				<br>
+				<div style="display: table;width:100%;">
+					<div style="display: table-row;width:100%;height: 30px;">
+						<div style="display: table-cell;width:50%;padding-bottom: 10px;" id="buttonsConversation">
+							<label style="margin-top: 6px;">Conversation</label>
+							<div style="float: right;" *ngIf="hideButtons == false">
+								<a style="margin-left: 8px;" (click)="takeScreenshot()" class="btn btn-default"><i class="fa fa-lg fa-picture-o" ></i></a>
+								<a style="margin-left: 8px;" (click)="downloadConversation()" class="btn btn-default"><i class="fa fa-lg fa-cloud-download" ></i></a>
+								<a style="margin-left: 8px;" (click)="copyConversationToClipboard()" class="btn btn-default"><i class="fa fa-lg fa-clipboard" ></i></a>
+							</div>
+						</div>
+						<div style="display: table-cell;width:20px;min-width:20px;">
+						</div>
+						<div style="display: table-cell;width:50%;padding-bottom: 10px;">
+
+							<div *ngIf="displayOutgoingMessage == false">
+								<label style="margin-top: 6px;">State</label>
+								<select (change)="stateTypeChanged($event.target.value)" class="form-control type-selection" style="margin-left: 10px;display:initial;width:160px">
+									<option *ngFor="let stateType of getStateTypes()" [ngValue]="option">{{stateType}}</option>
+								</select>
+								<div style="float: right;" *ngIf="hideButtons == false">
+									<button style="margin-left: 8px;" (click)="send('Clear state')" class="btn btn-primary">Reset</button>
+									<a style="margin-left: 8px;" (click)="downloadState()" class="btn btn-default"><i class="fa fa-lg fa-cloud-download" ></i></a>
+									<a style="margin-left: 8px;" (click)="copyStateToClipboard()" class="btn btn-default"><i class="fa fa-lg fa-clipboard" ></i></a>
+								</div>
+							</div>
+							<div *ngIf="displayOutgoingMessage == true">
+								<label style="margin-top: 6px;">Body</label>
+								<div style="float: right;" *ngIf="hideButtons == false">
+									<button style="margin-left: 8px;" (click)="send('Clear state')" class="btn btn-primary">Reset</button>
+									<a style="margin-left: 8px;" (click)="downloadPayload()" class="btn btn-default"><i class="fa fa-lg fa-cloud-download" ></i></a>
+									<a style="margin-left: 8px;" (click)="copyPayloadToClipboard()" class="btn btn-default"><i class="fa fa-lg fa-clipboard" ></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div style="display: table-row;width:100%;">
+						<div style="overflow-y: scroll;padding:10px;display: table-cell;max-width:100px;width:50%;background-color:#f5f7fa;border: 1px solid #eeeeee;border-radius: 4px;"
+						 id="chatWindow">
+							<div style="max-height: 100px">
+								<div *ngIf="(messages$ | async).length == 0">
+									To initiate the chat type something in the textbox and click send or press one of the buttons below.
+								</div>
+								<div *ngFor="let message of (messages$ | async)">
+									<div style="display: table;">
+										<div style="display: table-row;">
+											<div style="display: table-cell;">
+												{{ message.actorName }}:&nbsp;
+											</div>
+											<div style="display: table-cell;padding-bottom: 5px;">
+												{{message.text}}<span *ngIf="message.incoming == true">&nbsp; <a style="padding-top:0px;padding-bottom:0px;padding-left: 3px;padding-right: 3px;" (click)="displayMetaData(message)" class="btn btn-default"><i class="fa fa-eye" ></i></a></span>
+												<span *ngIf="message.incoming == false">&nbsp; <a style="padding-top:0px;padding-bottom:0px;padding-left: 3px;padding-right: 3px;" (click)="displayPayload(message)" class="btn btn-default"><i class="fa fa-eye" ></i></a></span>
+												<span *ngIf="message.incoming == false">&nbsp; <a style="padding-top:0px;padding-bottom:0px;padding-left: 3px;padding-right: 3px;" (click)="deleteConversation(message)" class="btn btn-default"><i class="fa fa-trash-o" ></i></a></span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div *ngIf="waitingForResponse == true">
+									<div style="display: table;">
+										<div style="display: table-row;">
+											<div style="display: table-cell;">
+												Watson:&nbsp;
+											</div>
+											<div style="display: table-cell;padding-bottom: 5px;">
+												Generating a response <i class="loading-icon fa fa-spinner fa-pulse fa-lg" style="width: inherit;margin-top: 0; margin-left:5px"></i>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div style="display: table-cell;width:20px;min-width:20px;">
+						</div>
+						<div style="display: table-cell;width:50%;max-width: 20em;background-color:#f5f7fa;border: 1px solid #eeeeee;border-radius: 4px;">
+							<div style="margin-top: -40px;margin-bottom: -40px;" [style.white-space]="whiteSpace">
+								<div style="height:500px;max-height: 500px;overflow: auto;padding: 10px" id="metaData">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div style="display: table;width:100%;">
+					<div style="display: table-row;width:100%;">
+						<div style="display: table-cell;width:50%">
+							<div style="display: table;width:100%;">
+								<div style="display: table-row;width:100%;">
+									<div style="display: table-cell;width:100%">
+										<input class="form-control" style="margin-top:15px;display: initial;" id="conversationInput" (keyup)="onKeyUp($event)" list="utterances"
+										/>
+										<datalist id="utterances">
+											<option *ngFor="let utterance of getUtterances()" value="{{utterance}}">
+										</datalist>
+									</div>
+									<div style="display: table-cell;min-width: 210px;">
+										<button [disabled]="(waitingForResponse == true) || (isWatsonConfigurationValid() == false)" style="min-width: 70px;margin-left: 10px;"
+										 (click)="send('')" class="btn btn-primary">Send</button>										
+										 <button [disabled]="(waitingForResponse == true) || (isWatsonConfigurationValid() == false)" style="min-width: 70px;margin-left: 5px;"
+										 (click)="modifyJson('')" class="btn btn-default">Modify JSON</button>										  
+									</div>
+								</div>
+							</div>
+						</div>
+						<div style="display: table-cell;width:20px;min-width:20px;">
+						</div>
+						<div style="display: table-cell;width:50%;">
+							<button style="margin-right: 8px;" (click)="openWatsonServices()" class="btn btn-default">Open Watson Services <i class="fa fa-external-link" aria-hidden="true"></i></button>
+							<a href="https://www.ibm.com/watson/developercloud/conversation/api/v1/#send_message" class="btn btn-default" target="_blank">API Doc <i class="fa fa-external-link" aria-hidden="true"></i></a>
+						</div>
+					</div>
+				</div>
+				<br>
+				<div style="width:50%;display:flex;margin-top: -20px;">
+					<label style="min-width:90px;padding-top: 15px;">Commands</label>
+					<div style="width:100%;">
+						<button style="margin-top: 10px;" (click)="send('Hello')" class="btn btn-default">Hello</button>
+						<button style="margin-top: 10px;" (click)="send('Help')" class="btn btn-default">Help</button>
+						<button style="margin-top: 10px;" (click)="send('Bye')" class="btn btn-default">Bye</button>
+					</div>
+					<div style="min-width: 90px;">
+					</div>
+				</div>
+			</div>
+			<br>
+		</div>
+	</div>
+</div>
+
+<div *ngIf="showJSONInputDialog == true" class="modal fade in" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="modalTitle"
+ style="display:block">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="modalTitle">Conversation Inspector</h4>
+			</div>
+			<div class="modal-body" id="sdlConfirmDeleteText">
+				Enter the JSON payload you want to send to Watson Conversation<br>
+				<br>
+				<textarea class="form-control" id="json-input" [formControl]="controlJSONInput" (keyup)="onKeyUpOverwrittenJson($event)"
+				 rows="20" ></textarea>
+				  <div *ngIf="(validationErrorsOverwrittenPayload$ | async)?.length > 0" class="alert alert-warning">
+							{{ (validationErrorsOverwrittenPayload$ | async)[0].displayText }}
+						</div>
+				  <br>
+				<button [disabled]="isValidPayload() == false" (click)="onJSONDefined()" class="btn btn-primary">Send</button>
+				<button [disabled]="isValidPayload() == false" (click)="onFormat()" class="btn btn-default">Format</button>
+				<a href="https://www.ibm.com/watson/developercloud/conversation/api/v1/#send_message" class="btn btn-default" target="_blank">API Doc <i class="fa fa-external-link" aria-hidden="true"></i></a>
+				<button (click)="onJSONInputCanceled()" class="btn btn-default">Cancel</button>
+				<br>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,68 @@
+---
+stages:
+- name: Build Stage
+  inputs:
+  - url: https://github.ibm.com/niklas-heidloff/test-client-for-watson-conversation.git
+    type: git
+    branch: master
+    dir_name: null
+  jobs:
+  - name: Build
+    type: builder
+    artifact_dir: ''
+- name: npm install
+  inputs:
+  - type: job
+    stage: Build Stage
+    job: Build
+    dir_name: null
+  triggers:
+  - type: stage
+  jobs:
+  - name: Build
+    type: builder
+    artifact_dir: ''
+    build_type: npm
+    script: |-
+      #!/bin/bash
+      # The default Node.js version is 0.10.40
+      # To use Node.js 0.10.48, uncomment the following line:
+      #export PATH=/opt/IBM/node-v0.10.48/bin:$PATH
+      # To use Node.js 0.12.7, uncomment the following line:
+      #export PATH=/opt/IBM/node-v0.12/bin:$PATH
+      # To use Node.js 4.4.5, uncomment the following line:
+      #export PATH=/opt/IBM/node-v4.4.5/bin:$PATH
+      # To use Node.js 6.7.0, uncomment the following line:
+      export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
+      npm install
+      npm run build:prod
+- name: Deploy Stage
+  inputs:
+  - type: job
+    stage: npm install
+    job: Build
+    dir_name: null
+  triggers:
+  - type: stage
+  jobs:
+  - name: Deploy
+    type: deployer
+    target:
+      region_id: w3ibm:prod:us-south
+      organization: BerlinAdvocates
+      space: dev
+      application: conversation-inspector-for-ibm-watson
+    script: |-
+      #!/bin/bash
+
+      cd node
+
+      cf push "${CF_APP}"
+
+      # View logs
+      # cf logs "${CF_APP}" --recent
+hooks:
+- enabled: true
+  label: null
+  ssl_enabled: false
+  url: https://devops-api.w3ibm.bluemix.net/v1/messaging/webhook/publish

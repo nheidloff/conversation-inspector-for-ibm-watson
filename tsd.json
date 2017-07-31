@@ -1,0 +1,18 @@
+{
+  "version": "v4",
+  "repo": "DefinitelyTyped/DefinitelyTyped",
+  "ref": "master",
+  "path": "typings",
+  "bundle": "typings/tsd.d.ts",
+  "installed": {
+    "metismenu/metismenu.d.ts": {
+      "commit": "f9351fd6d2154b3822444c54e687f1b102827eac"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "f9351fd6d2154b3822444c54e687f1b102827eac"
+    },
+    "bootstrap/bootstrap.d.ts": {
+      "commit": "1f0791147c6c145227b1778bb26781a79d516917"
+    }
+  }
+}
