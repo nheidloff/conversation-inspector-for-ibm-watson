@@ -1,6 +1,6 @@
 ---
 stages:
-- name: Build Stage
+- name: Clone
   inputs:
   - type: git
     branch: master
@@ -11,10 +11,10 @@ stages:
   - name: Build
     type: builder
     artifact_dir: ''
-- name: npm install
+- name: Build
   inputs:
   - type: job
-    stage: Build Stage
+    stage: Clone
     job: Build
     dir_name: null
   triggers:
@@ -29,10 +29,10 @@ stages:
       export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
       npm install
       npm run build:prod
-- name: Deploy Stage
+- name: MyStage
   inputs:
   - type: job
-    stage: Build Stage
+    stage: Build
     job: Build
     dir_name: null
   triggers:
@@ -45,15 +45,10 @@ stages:
       organization: ${ORG_NAME}
       space: ${SPACE_NAME}
       application: ${CF_APP_NAME}
-    script: |-
+    script: |
       #!/bin/bash
-
       cd node
-
       cf push "${CF_APP}"
-
-      # View logs
-      # cf logs "${CF_APP}" --recent
 hooks:
 - enabled: true
   label: null
