@@ -4,7 +4,7 @@ The [Conversation Inspector for IBM Watson](https://github.com/nheidloff/convers
 
 Main functionality:
 
-* Displays JSON data of incomging messages [(sample)](https://github.com/nheidloff/conversation-inspector-for-ibm-watson/raw/master/screenshots/help1.png) and provides filters, for example only context variables [(sample)](https://github.com/nheidloff/conversation-inspector-for-ibm-watson/raw/master/screenshots/help3.png)
+* Displays JSON data of incoming messages [(sample)](https://github.com/nheidloff/conversation-inspector-for-ibm-watson/raw/master/screenshots/help1.png) and provides filters, for example only context variables [(sample)](https://github.com/nheidloff/conversation-inspector-for-ibm-watson/raw/master/screenshots/help3.png)
 * Displays JSON data of outgoing messages [(sample)](https://github.com/nheidloff/conversation-inspector-for-ibm-watson/raw/master/screenshots/help5.png)
 * Allows sending outgoing messages via text or JSON [(sample)](https://github.com/nheidloff/conversation-inspector-for-ibm-watson/raw/master/screenshots/help2.png)
 * Displays history of conversation steps [(sample)](https://github.com/nheidloff/conversation-inspector-for-ibm-watson/raw/master/screenshots/help4.png)
