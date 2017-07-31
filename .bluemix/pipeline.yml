@@ -1,13 +1,32 @@
 ---
 stages:
-- name: Clone
+- name: Build Stage
   inputs:
   - type: git
     branch: master
-    dir_name: null
   triggers:
   - type: commit
   jobs:
   - name: Build
     type: builder
-    artifact_dir: ''
+- name: Deploy Stage
+  inputs:
+  - type: job
+    stage: Build Stage
+    job: Build
+  triggers:
+  - type: stage
+  jobs:
+  - name: Deploy to dev
+    type: deployer
+    target:
+      url: ${CF_TARGET_URL}
+      organization: ${CF_ORGANIZATION}
+      space: ${CF_SPACE}
+      application: ${CF_APP}
+    script: |-
+      #!/bin/bash
+      cf push "${CF_APP}"
+
+      # View logs
+      #cf logs "${CF_APP}" --recent
