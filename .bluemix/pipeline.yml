@@ -35,3 +35,28 @@ stages:
       export PATH=/opt/IBM/node-v6.7.0/bin:$PATH
       npm install
       npm run build:prod
+- name: Deploy Stage
+  inputs:
+  - type: job
+    stage: npm install
+    job: Build
+    dir_name: null
+  triggers:
+  - type: stage
+  jobs:
+  - name: Deploy
+    type: deployer
+    target:
+      region_id: w3ibm:prod:us-south
+      organization: BerlinAdvocates
+      space: dev
+      application: conversation-inspector-for-ibm-watson
+    script: |-
+      #!/bin/bash
+
+      cd node
+
+      cf push "${CF_APP}"
+
+      # View logs
+      # cf logs "${CF_APP}" --recent
