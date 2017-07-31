@@ -47,10 +47,10 @@ stages:
   - name: Deploy
     type: deployer
     target:
-      region_id: w3ibm:prod:us-south
-      organization: BerlinAdvocates
-      space: dev
-      application: conversation-inspector-for-ibm-watson
+      url: ${CF_TARGET_URL}
+      organization: ${CF_ORGANIZATION}
+      space: ${CF_SPACE}
+      application: ${CF_APP}      
     script: |-
       #!/bin/bash
 
