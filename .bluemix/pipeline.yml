@@ -4,7 +4,6 @@ stages:
   inputs:
   - type: git
     branch: master
-    service: ${REPO}
   triggers:
   - type: commit
   jobs:
