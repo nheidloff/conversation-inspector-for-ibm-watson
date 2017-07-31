@@ -126,32 +126,11 @@ module.exports = function(env) {
        */
       // NOTE: when adding more properties make sure you include them in custom-typings.d.ts
       new DefinePlugin({
-        'ENDPOINT_AUTH_TOKEN': JSON.stringify(METADATA.endpointAuthToken),
-        'END_USER_APP': JSON.stringify({ url: "https://wpa-end-user.w3ibm.mybluemix.net/"}),
-        'BLUEMIX_AUTH': JSON.stringify({
-          clientId: "watson-personal-assistant",
-          clientSecret: "HFKjlJFDGFCflkjlj",
-          serviceUrl: "https://login.ng.bluemix.net/UAALoginServerWAR", // Bluemix public ng
-          //serviceUrl: "https://login.stage1.ng.bluemix.net/UAALoginServerWAR", // Bluemix stage1 ng
-          callback: "http://watson-personal-assistant-skills.w3ibm.mybluemix.net"
-        }),
-        "ACCESS_TOKEN_PROVIDERS": JSON.stringify({
-            "gmail":{
-                "verify_url":"https://www.googleapis.com/oauth2/v3/tokeninfo",
-                "refresh_url":"https://www.googleapis.com/oauth2/v4/token"
-            }
-        }),
+        'ENDPOINT_AUTH_TOKEN': JSON.stringify(METADATA.endpointAuthToken),        
         'ENV': JSON.stringify(METADATA.ENV),
         'HMR': METADATA.HMR,
         'process.env': {
-          'ENDPOINT_AUTH_TOKEN': JSON.stringify(METADATA.endpointAuthToken),
-          'BLUEMIX_AUTH': JSON.stringify({
-            clientId: "watson-personal-assistant",
-            clientSecret: "HFKjlJFDGFCflkjlj",
-            serviceUrl: "https://login.ng.bluemix.net/UAALoginServerWAR", // Bluemix public ng
-            //serviceUrl: "https://login.stage1.ng.bluemix.net/UAALoginServerWAR", // Bluemix stage1 ng
-            callback: "http://watson-personal-assistant-skills.w3ibm.mybluemix.net"
-          }),
+          'ENDPOINT_AUTH_TOKEN': JSON.stringify(METADATA.endpointAuthToken),          
           'ENV': JSON.stringify(METADATA.ENV),
           'NODE_ENV': JSON.stringify(METADATA.ENV),
           'HMR': METADATA.HMR,

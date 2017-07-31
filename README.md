@@ -13,7 +13,7 @@ Main functionality:
 * Displays Watson Conversation workspace status [(sample)](https://github.com/nheidloff/conversation-inspector-for-ibm-watson/raw/master/screenshots/help9.png)
 * Provides auto-complete textbox for previous text messages [(sample)](https://github.com/nheidloff/conversation-inspector-for-ibm-watson/raw/master/screenshots/help8.png)
 
-Try out the [online](http://conversation-inspector-for-ibm-watson.w3ibm.mybluemix.net) version yourself.
+Try out the [online](https://conversation-inspector-for-ibm-watson.mybluemix.net) version yourself.
 
 Screenshot of a sample conversation:
 
