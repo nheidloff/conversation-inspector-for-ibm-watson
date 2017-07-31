@@ -11,7 +11,7 @@ conversation-inspector-for-ibm-watson-repo:
   parameters:
     repo_name: "conversation-inspector-for-ibm-watson-test"
     repo_url: https://github.com/nheidloff/conversation-inspector-for-ibm-watson
-    type: fork
+    type: clone
     has_issues: true
 
 # Pipelines
