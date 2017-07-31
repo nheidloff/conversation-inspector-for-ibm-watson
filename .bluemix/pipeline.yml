@@ -2,10 +2,11 @@
 stages:
 - name: Build Stage
   inputs:
-  - url: https://github.com/nheidloff/conversation-inspector-for-ibm-watson.git
-    type: git
+  - type: git
     branch: master
-    dir_name: null
+    service: ${REPO}
+  triggers:
+  - type: commit
   jobs:
   - name: Build
     type: builder
@@ -48,10 +49,10 @@ stages:
   - name: Deploy
     type: deployer
     target:
-      region_id: w3ibm:prod:us-south
-      organization: BerlinAdvocates
-      space: dev
-      application: conversation-inspector-for-ibm-watson
+      region_id: ${REGION_ID}
+      organization: ${ORG_NAME}
+      space: ${SPACE_NAME}
+      application: ${CF_APP_NAME}      
     script: |-
       #!/bin/bash
 
@@ -61,8 +62,3 @@ stages:
 
       # View logs
       # cf logs "${CF_APP}" --recent
-hooks:
-- enabled: true
-  label: null
-  ssl_enabled: false
-  url: https://devops-api.w3ibm.bluemix.net/v1/messaging/webhook/publish
