@@ -75,8 +75,12 @@
 					</div>
 				</div>
 				<br><br>
-				<button [disabled]="isWatsonConfigurationValid() == false" style="margin-right: 8px;" (click)="openInspectButtonPressed()"
-				 class="btn btn-primary">Inspect ...</button>
+				<button *ngIf="isWatsonConfigurationValid() == false" disabled style="margin-right: 8px;" 
+				 	class="btn btn-primary">Inspect ...</button>
+				<a *ngIf="isWatsonConfigurationValid() == true" routerLink="/inspector/" routerLinkActive="active"
+					class="btn btn-primary" style="margin-right: 8px;">
+					Inspect ...
+				</a>
 			</fieldset>
 		</form>
 	</div>
