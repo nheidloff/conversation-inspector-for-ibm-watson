@@ -67,7 +67,7 @@
 						<label>Workspace</label>
 						<select id="workspaces" class="form-group form-control" style="margin-bottom: 0px;" (change)="onChangeWorkspace($event)"
 						 (focus)="onFocusWorkspace($event)">	
-							<option *ngFor="let workspace of (workspaces$ | async);" [value]="workspace.workspace_id">{{ workspace.name }}</option>							
+							<option *ngFor="let workspace of (workspaces$ | async);" [attr.selected]="isSelectedOption(workspace.workspace_id)" [value]="workspace.workspace_id">{{ workspace.name }}</option>							
 						</select>
 						<div *ngIf="(validationErrorsWorkspace$ | async)?.length > 0" class="alert alert-warning">
 							{{ (validationErrorsWorkspace$ | async)[0].displayText }}

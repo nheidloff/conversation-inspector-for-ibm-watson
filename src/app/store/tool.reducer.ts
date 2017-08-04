@@ -102,6 +102,7 @@ export function toolReducer(state: Tool = INITIAL_TOOL_STATE, action: any) {
         case ToolAction.SET_WATSON_WORKSPACE:
             newTool.watsonWorkspace = action.payload;
             newTool.chatSession = new ChatSession();
+            newTool.selectedMessage = null;
             Validations.validate(newTool);
             return newTool;
 

@@ -87,6 +87,16 @@ export class ConfigurationComponent {
 		}
 	}
 
+	isSelectedOption(workspaceId: string): any {
+		let output: any = null;
+		if (this.ngRedux.getState().tool.watsonWorkspace) {
+			if (this.ngRedux.getState().tool.watsonWorkspace == workspaceId) {
+				output = true;
+			}
+		}
+		return output;
+	}
+
 	ngOnInit(): void {
 		this.skillOverviewForm = this.formBuilder.group({});
 
